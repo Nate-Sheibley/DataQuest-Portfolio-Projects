@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 #scraped wikipedia webpages
-Mutlithreaded_text_search_Wikipedia/wiki/
+python-mapReduce_Mutlithreaded_text_search_Wikipedia/wiki/
