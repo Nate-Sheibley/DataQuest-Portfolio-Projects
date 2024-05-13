@@ -2,7 +2,7 @@
 title: "Forest_fires_report"
 author: "Nate Sheibley"
 date: "2024-04-11"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}

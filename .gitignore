@@ -186,6 +186,7 @@ python-mapReduce_Mutlithreaded_text_search_Wikipedia/wiki/
 
 # RStudio files
 .Rproj.user/
+.Rproj
 
 # produced vignettes
 vignettes/*.html
