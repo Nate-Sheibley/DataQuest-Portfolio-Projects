@@ -1,7 +1,7 @@
-Forest_fires_report
+Forest fire factors report
 ================
 Nate Sheibley
-2024-04-11
+2024-07-16
 
 # Portugal Forest Fire Factors
 
@@ -14,11 +14,14 @@ Data can be found
 This data is associated with fosrest fire prediction modelling in
 Portugal from [this](http://www3.dsi.uminho.pt/pcortez/fires.pdf) paper.
 
+Cortez, Paulo, and Aníbal de Jesus Raimundo Morais. “A data mining
+approach to predict forest fires using meteorological data.” (2007).
+
 ## Packages to be used
 
 A subset of tidyverse packages.
 
-All code is displayed, in a normal report, liberal use of echo=FALSE
+All code is displayed. In a normal report, liberal use of echo=FALSE
 would be used to hide visualization code.
 
 ``` r
@@ -31,6 +34,8 @@ packages <- c('yaml',
               'lubridate',
               'knitr',
               'ggplot2')
+renv::init()
+#renv::install(packages)
 lapply(packages, library, character.only=TRUE)
 ```
 
@@ -130,27 +135,53 @@ fires_by_day <- forest_tib %>%
   summarise(num_fires=n())
 ```
 
+# Visualizations
+
+### Set Theme for all plots.
+
 ``` r
 classic_an <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, face = 'bold', size = 16))
 theme_set(classic_an)
+```
 
+## Fire frequency by day of the week
+
+``` r
 fires_by_day %>% 
   ggplot(aes(x=day, y=num_fires)) +
   geom_col() +
-  labs(title='Fires by day of week', y='Number of Fires',x='')
+  labs(title='Fires freqeuncy by day of week', y='Number of Fires',x='')
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+# Save named plot to plots folder
+  ggsave("Fires_freqeuncy_by_day_of_week.jpeg", 
+         path = "./forest_fire_report_files/")
+```
+
+    ## Saving 7 x 5 in image
+
+## Fire frequency by month of the year
 
 ``` r
 forest_tib %>% 
   ggplot(aes(x=month)) +
   geom_bar() +
-  labs(title='Fires by month', y='Number of Fires', x='') +
+  labs(title='Fire freqeuncy by month', y='Number of Fires', x='') +
   theme(axis.text.x = element_text(angle=20,hjust=0.8))
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+# Save named plot to plots folder
+  ggsave("Fire_freqeucy_by_month.jpeg", 
+         path = "./forest_fire_report_files/")
+```
+
+    ## Saving 7 x 5 in image
 
 ## Fire Factors in August and September
 
@@ -194,19 +225,39 @@ fire_factor__freq_relations %>%
              color = fire_factors, 
              group = fire_factors)) +
   geom_line()+
-  facet_grid(rows=vars(fire_factors), scale='free_y') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle=20,hjust=0.8))
+  labs(title = "Fire Factors - Frequency Relations",
+       y = "Average fire factor value",
+       x = "",
+       color = "Fire factors") +
+  facet_grid(rows=vars(fire_factors), 
+             scales='free_y',
+             ) +
+  theme(axis.text.x = element_text(angle=20,hjust=0.8), 
+        panel.grid.major = element_line(),
+        panel.border = element_rect("black", fill=NA))
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-\## Using area as a proxy for severity
+![](forest_fire_report_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+# Save named plot to plots folder
+  ggsave("fire_factors_by_month.jpeg", path = "./forest_fire_report_files/")
+```
+
+    ## Saving 7 x 5 in image
+
+## Fire factor relationship with fire intensity
+
+Area burned is used as a proxy for intensity.
 
 There are 3 fires with areas above 300. The Graphs are provided with and
 without those fires
 
 Increasing temperature, DC, DMC, and FFMC all are related to increasing
 fire intensity.
+
+FFMC had a fire zero hectares in size as the lowest value by far,
+changing the scale of the graph.
 
 ``` r
 fire_factor_area_relations <- forest_tib %>% 
@@ -218,28 +269,48 @@ fire_factor_area_relations %>%
   ggplot(aes(y=area, x=values, color = fire_factors)) +
   geom_point()+
   facet_wrap(facets=vars(fire_factors), scales='free_x') +
-  theme_bw() +
-  labs(title = 'Relationships between fire factors and area burned (All)',
+  theme(panel.grid.major = element_line(), 
+        panel.border = element_rect("black", fill=NA)) +
+  labs(title = 'Fire factor intensity relations (all)',
        x = 'Fire factor values',
-       y = 'Area (hectare)')
+       y = 'Area burned (hectare)',
+       color = "Fire factors")
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
-fire_factor_area_relations %>% filter(area<  300 & area > 0) %>% 
+# Save named plot to plots folder
+  ggsave("fire_factors_intensity_relation_all.jpeg", 
+         path = "./forest_fire_report_files/")
+```
+
+    ## Saving 7 x 5 in image
+
+``` r
+fire_factor_area_relations %>% filter(area <  300 & area > 0) %>% 
   ggplot(aes(y=area, x=values, color = fire_factors)) +
   geom_point()+
   facet_wrap(facets = vars(fire_factors), scales ='free_x') +
-  theme_bw() +
-  labs(title = 'Relationships between fire factors and area burned (0 < area < 300)',
+  theme(panel.grid.major = element_line(), 
+        panel.border = element_rect("black", fill=NA)) +
+  labs(title = 'Fire factor intensity relations (0 < area < 300)',
        x = 'Fire factor values',
-       y = 'Area (hectare)')
+       y = 'Area burned (hectare)',
+       color = "Fire factors")
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
-Raw data variables, as documented in the paper:
+``` r
+# Save named plot to plots folder
+  ggsave("fire_factors_intensity_relation_<_300_ha.jpeg", 
+         path = "./forest_fire_report_files/")
+```
+
+    ## Saving 7 x 5 in image
+
+## Raw data variables, as documented in the referenced paper:
 
     X: X-axis spatial coordinate within the Montesinho park map: 1 to 9
     Y: Y-axis spatial coordinate within the Montesinho park map: 2 to 9
@@ -254,6 +325,3 @@ Raw data variables, as documented in the paper:
     wind: Wind speed in km/h: 0.40 to 9.40
     rain: Outside rain in mm/m2 : 0.0 to 6.4
     area: The burned area of the forest (in ha): 0.00 to 1090.84
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
