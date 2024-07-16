@@ -1,12 +1,13 @@
 # ToC
+## Analysis of 11 Forest Fire factors for relation to frequency and intensity
+### [R-visualizations_forest_fire_metrics](/R-visualizations_forest_fire_metrics)
+Use tidyverse packages to transform and load data from a CSV, then make complex visualizations to aid in discovering which forest fire factors correlate strongly with increase frequency of fire, or increased intensity (using area burned as a proxy)
 
-## [SQL_query_writing-Model_Cars_Store](/SQL_query_writing-Model_Cars_Store)
+### [SQL_query_writing-Model_Cars_Store](/SQL_query_writing-Model_Cars_Store)
 
-## [R-visualizations_forest_fire_metrics](/R-visualizations_forest_fire_metrics)
+### [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
 
-## [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
-
-## [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
+### [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
 
 
 ---
