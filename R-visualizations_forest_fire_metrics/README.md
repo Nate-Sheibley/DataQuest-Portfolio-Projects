@@ -153,15 +153,14 @@ fires_by_day %>%
   labs(title='Fires freqeuncy by day of week', y='Number of Fires',x='')
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/Fires_freqeuncy_by_day_of_week-1.png)<!-- -->
 
 ``` r
 # Save named plot to plots folder
-  ggsave("Fires_freqeuncy_by_day_of_week.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("Fires_freqeuncy_by_day_of_week.jpeg", 
+#   path = "./forest_fire_report_files/")
 ```
-
-    ## Saving 7 x 5 in image
 
 ## Fire frequency by month of the year
 
@@ -173,15 +172,14 @@ forest_tib %>%
   theme(axis.text.x = element_text(angle=20,hjust=0.8))
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/Fire_freqeucy_by_month-1.png)<!-- -->
 
 ``` r
 # Save named plot to plots folder
-  ggsave("Fire_freqeucy_by_month.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("Fire_freqeucy_by_month.jpeg", 
+#   path = "./forest_fire_report_files/")
 ```
-
-    ## Saving 7 x 5 in image
 
 ## Fire Factors in August and September
 
@@ -237,14 +235,13 @@ fire_factor__freq_relations %>%
         panel.border = element_rect("black", fill=NA))
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/fire_factors_by_month-1.png)<!-- -->
 
 ``` r
 # Save named plot to plots folder
-  ggsave("fire_factors_by_month.jpeg", path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_by_month.jpeg", path = "./forest_fire_report_files/")
 ```
-
-    ## Saving 7 x 5 in image
 
 ## Fire factor relationship with fire intensity
 
@@ -277,17 +274,14 @@ fire_factor_area_relations %>%
        color = "Fire factors")
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/fire_factor_area_relations-1.png)<!-- -->
 
 ``` r
 # Save named plot to plots folder
-  ggsave("fire_factors_intensity_relation_all.jpeg", 
-         path = "./forest_fire_report_files/")
-```
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_intensity_relation_all.jpeg", 
+#   path = "./forest_fire_report_files/")
 
-    ## Saving 7 x 5 in image
-
-``` r
 fire_factor_area_relations %>% filter(area <  300 & area > 0) %>% 
   ggplot(aes(y=area, x=values, color = fire_factors)) +
   geom_point()+
@@ -300,15 +294,14 @@ fire_factor_area_relations %>% filter(area <  300 & area > 0) %>%
        color = "Fire factors")
 ```
 
-![](forest_fire_report_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
+![](forest_fire_report_files/figure-gfm/fire_factor_area_relations-2.png)<!-- -->
 
 ``` r
 # Save named plot to plots folder
-  ggsave("fire_factors_intensity_relation_<_300_ha.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_intensity_relation_<_300_ha.jpeg", 
+#   path = "./forest_fire_report_files/")
 ```
-
-    ## Saving 7 x 5 in image
 
 ## Raw data variables, as documented in the referenced paper:
 

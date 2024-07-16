@@ -26,7 +26,7 @@ A subset of tidyverse packages.
 
 All code is displayed. In a normal report, liberal use of echo=FALSE would be used to hide visualization code.
 
-```{r, results='hide', message=FALSE}
+```{r imports, results='hide', message=FALSE}
 packages <- c('yaml',
               'readr', 
               'tidyr', 
@@ -65,7 +65,7 @@ There are zero NA values in the dataset.
 
 Zero area burned will be addressed in the analysis
 
-```{r}
+```{r data-cleaning}
 # convert month string abbreviation to ordered month factor
 # label according to month.name
 # mutate to factor in order to save memory and increase speed
@@ -93,7 +93,7 @@ This is the dry season at the end of summer in the northern hemisphere.
 
 There is also a small peak in March, which is interesting. 
 
-``` {r}
+``` {r grouping}
 fires_by_month <- forest_tib %>% 
   group_by(month) %>% 
   summarise(num_fires=n())
@@ -105,26 +105,27 @@ fires_by_day <- forest_tib %>%
 # Visualizations
 
 ### Set Theme for all plots.
-```{r}
+```{r set-theme}
 classic_an <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, face = 'bold', size = 16))
 theme_set(classic_an)
 ```
 
 ## Fire frequency by day of the week
 
-```{r}
+```{r Fires_freqeuncy_by_day_of_week}
 fires_by_day %>% 
   ggplot(aes(x=day, y=num_fires)) +
   geom_col() +
   labs(title='Fires freqeuncy by day of week', y='Number of Fires',x='')
 
 # Save named plot to plots folder
-  ggsave("Fires_freqeuncy_by_day_of_week.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("Fires_freqeuncy_by_day_of_week.jpeg", 
+#   path = "./forest_fire_report_files/")
 ```
 
 ## Fire frequency by month of the year
-```{r}
+```{r Fire_freqeucy_by_month}
 forest_tib %>% 
   ggplot(aes(x=month)) +
   geom_bar() +
@@ -132,8 +133,9 @@ forest_tib %>%
   theme(axis.text.x = element_text(angle=20,hjust=0.8))
 
 # Save named plot to plots folder
-  ggsave("Fire_freqeucy_by_month.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("Fire_freqeucy_by_month.jpeg", 
+#   path = "./forest_fire_report_files/")
 ```
 
 ## Fire Factors in August and September
@@ -152,7 +154,7 @@ ISI and wind correlate to the increase in number of fires in March, along with a
 
 The Fine Fuel Moisture Code index (FFMC) initially rises and stabilizes in march, from the lower winter values. Springtime also results in the first of two increases in Initial Spread Index (ISI) and Duff moisture code (DMC), and a local minima in relative humidity (RH).
 
-``` {r}
+``` {r fire_factors_by_month}
 fire_factor__freq_relations <- forest_tib %>% 
   pivot_longer(cols=-c(month, day), 
                names_to = 'fire_factors', 
@@ -178,7 +180,8 @@ fire_factor__freq_relations %>%
 
 
 # Save named plot to plots folder
-  ggsave("fire_factors_by_month.jpeg", path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_by_month.jpeg", path = "./forest_fire_report_files/")
 ```
 ## Fire factor relationship with fire intensity
 
@@ -191,7 +194,7 @@ Increasing temperature, DC, DMC, and FFMC all are related to increasing fire int
 FFMC had a fire zero hectares in size as the lowest value by far, changing the scale of the graph.
 
 
-``` {r}
+``` {r fire_factor_area_relations}
 fire_factor_area_relations <- forest_tib %>% 
   pivot_longer(cols=-c(month, day, area), 
                names_to = 'fire_factors', 
@@ -209,8 +212,9 @@ fire_factor_area_relations %>%
        color = "Fire factors")
 
 # Save named plot to plots folder
-  ggsave("fire_factors_intensity_relation_all.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_intensity_relation_all.jpeg", 
+#   path = "./forest_fire_report_files/")
 
 fire_factor_area_relations %>% filter(area <  300 & area > 0) %>% 
   ggplot(aes(y=area, x=values, color = fire_factors)) +
@@ -224,8 +228,9 @@ fire_factor_area_relations %>% filter(area <  300 & area > 0) %>%
        color = "Fire factors")
 
 # Save named plot to plots folder
-  ggsave("fire_factors_intensity_relation_<_300_ha.jpeg", 
-         path = "./forest_fire_report_files/")
+# Unnecessary due to Rstudio autosaving and autoknitting when saving to github documents using the {r block-name} syntax
+# ggsave("fire_factors_intensity_relation_<_300_ha.jpeg", 
+#   path = "./forest_fire_report_files/")
 
 ```
 
