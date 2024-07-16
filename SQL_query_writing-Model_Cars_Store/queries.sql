@@ -1,7 +1,8 @@
--------
-QUERIES
--------
-(1)
+-----------
+--QUERIES--
+-----------
+ 
+-- (1) Generate table containing number of rows and columns for each table in the database.
 CREATE VIEW db_table_info AS
 SELECT 'customers' table_name, count(*) number_of_attributes,(SELECT count(*)FROM customers ) number_of_rows FROM pragma_table_info('customers')
 UNION ALL
@@ -18,8 +19,10 @@ UNION ALL
 SELECT 'employees' table_name, count(*) number_of_attributes,(SELECT count(*)FROM employees ) number_of_rows FROM pragma_table_info('employees')
 UNION ALL
 SELECT 'offices' table_name, count(*) number_of_attributes,(SELECT count(*)FROM offices ) number_of_rows FROM pragma_table_info('offices');
----
-(2)
+
+
+
+-- (2) Select top 10 lowest stock per total ordered items. Ordered by total sales revanue of that SKU
 WITH stock AS (
  SELECT p.productName, p.productCode,
         ROUND(total_ordered * 1.0 / quantityInStock, 2) as low_stock
@@ -39,8 +42,10 @@ SELECT productName, stock.productCode, stock.low_stock,
  GROUP BY orderdetails.productCode
  ORDER BY product_performance DESC
  LIMIT 10;
----
-(3)
+
+
+
+-- (3) Select top 5 most profitable customers (Add DESC to ORDER BY for top 5 least engaged customers)
 WITH customer_profit AS (
 SELECT o.customerNumber, ROUND(SUM(quantityOrdered * (priceEach - buyPrice), 2)) AS profit
   FROM products p
@@ -55,20 +60,24 @@ SELECT contactLastName, contactFirstName, city, country, profit
   JOIN customer_profit
  ORDER BY profit --DESC
  LIMIT 5;
----
-(4) 
+
+
+
+-- (4) Table of new customers per month, and how much they spend to date. 
+-- Truncates dates to only contain year month for later aggregation
 WITH payment_with_year_month_table AS (
 SELECT *, 
        CAST(SUBSTR(paymentDate, 1,4) AS INTEGER)*100 + CAST(SUBSTR(paymentDate, 6,7) AS INTEGER) AS year_month
   FROM payments p
 ),
-
+-- Aggregate purcahses by year-month and counts the customers per month
 customers_by_month_table AS (
 SELECT p1.year_month, COUNT(*) AS number_of_customers, SUM(p1.amount) AS total
   FROM payment_with_year_month_table p1
  GROUP BY p1.year_month
 ),
-
+-- Selects all new customers per month, 
+-- and the total amount they purchase in their patronage
 new_customers_by_month_table AS (
 SELECT p1.year_month, 
        COUNT(*) AS number_of_new_customers,
@@ -85,19 +94,24 @@ SELECT p1.year_month,
                                   WHERE p2.year_month < p1.year_month)
  GROUP BY p1.year_month
 )
-
+-- Calculate the porportion of new customers per month, 
+-- and the porportion of purchases that new customers contribute to total amount 
 SELECT year_month, 
        ROUND(number_of_new_customers*100/number_of_customers,1) AS number_of_new_customers_props,
        ROUND(new_customer_total*100/total,1) AS new_customers_total_props
   FROM new_customers_by_month_table;
----
-(5)
+
+
+
+-- (5) Select the 5 most recent orders
 SELECT orderDate
   FROM orders
  ORDER BY orderDate DESC
  LIMIT 5;
----
-(6)
+
+
+
+-- (6) Select the average amount a new customer spends over their lifetime as a patron
 SELECT SUM(profit) / count(customerNumber) AS avg_profit_per_customer
   FROM (SELECT o.customerNumber, 
                SUM(quantityOrdered * (priceEach - buyPrice)) AS profit
