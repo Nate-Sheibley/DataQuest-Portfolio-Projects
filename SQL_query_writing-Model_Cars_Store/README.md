@@ -14,7 +14,7 @@ A marketing strategy for new customers to be found is necessary. No new customer
 
 Each customer provides 39039.59 profit on average, indicating that we must spend less than that per new customer. 
 
-Classic Cars are our best-selling models, with vintage cars and motorcycles also popular.
+Classic Cars are our best-selling models, with vintage cars and motorcycles also popular. Historically significant vehicles are also very popular. Target these product lines for promotional material.
 
 ### For more information on the results please see the full analysis below.
 
