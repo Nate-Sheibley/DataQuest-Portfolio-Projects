@@ -1,12 +1,17 @@
 # ToC
+## 1. Analysis of 11 Forest Fire factors for relation to frequency and intensity
+### [R-visualizations_forest_fire_metrics](/R-visualizations_forest_fire_metrics)
 
-## [SQL_query_writing-Model_Cars_Store](/SQL_query_writing-Model_Cars_Store)
+Use tidyverse packages to transform and load data from a CSV, then make complex visualizations to aid in discovering which forest fire factors correlate strongly with increase frequency of fire, or increased intensity (using area burned as a proxy)
 
-## [R-visualizations_forest_fire_metrics](/R-visualizations_forest_fire_metrics)
+## 2. Model Car sales analysis using only SQL
+### [SQL_query_writing-Model_Cars_Store](/SQL_query_writing-Model_Cars_Store)
 
-## [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
+Using SQLite3, load the dataset with the given schema diagram, then generate a view of table statistics. Use this data, and no python functions, to do a sales analysis on to discover which models are best sellers, which product lines are best to expand, and how much can we spend on a marketting campaign per new customer to and continue to drive a profit.
 
-## [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
+### [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
+
+### [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
 
 
 ---
