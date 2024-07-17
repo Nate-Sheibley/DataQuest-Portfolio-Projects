@@ -165,7 +165,7 @@ Generate 3 tables
 
 
 ### Query (4) 
-Too long for this format, reference [queries.sql](/queries.sql).
+Too long for this format, reference [queries.sql](SQL_query_writing-Model_Cars_Store/queries.sql).
 
 It uses 3 views. 
 
