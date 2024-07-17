@@ -166,11 +166,13 @@ Generate 3 tables
 
 ### Query (4) 
 Too long for this format, reference [queries.sql](/queries.sql).
+
 It uses 3 views. 
-First view casts the date values of the paytment table into year-month format (yyyymm), but does not group them.
-Second view counts total sales and total customer from the first view, grouped by year-month.
-Third view uses the previous 2 views to generate 5 columns : year-month, number of new customers this month, revenue due to new customers this month, total number of customers this month, and total revenue this month
-The final query reduces these hard nubmers into the precentage values below
+
+1. Cast the date values of the paytment table into year-month format (yyyymm), but does not group them.
+2. Counts total sales and total customer from the first view, grouped by year-month.
+3. Use the previous 2 views to generate 5 columns : year-month, number of new customers this month, revenue due to new customers this month, total number of customers this month, and total revenue this month
+4. Reduces these hard numbers into the precentage values below
 
 Year Month|% of customers that are new this month|% of sales dollars by new customers this month
 ---|---|---
