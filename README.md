@@ -16,10 +16,8 @@ The dataset was loading into SQlite for query writing with the given schema diag
 
 Make faceted and tiled visualizations to aid in discovering which forest fire factors correlate strongly with increase frequency of fire, or increased intensity (using area burned as a proxy). Use R-tidyverse packages to transform and load data from a CSV. 
 
+Minor projects
 ---
-
-# Minor projects
-
 ## Parallelized wikipedia text search in python using map-redice written from scratch (1000 articles test)
 ### [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
 
