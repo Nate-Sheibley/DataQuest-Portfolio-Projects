@@ -21,7 +21,7 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 ## Introduction
 
-In 2015 Walt Hickey from FiveThirtyEight foudn Fandango was found to artificially inflate the displayed star ratings for movies in a [popular article](https://fivethirtyeight.com/features/fandango-movies-ratings/). The aggregate rating store was accessible in the HTML and displayed a half star lower mode than the displayed rating.
+In 2015 Walt Hickey from FiveThirtyEight found Fandango was found to artificially inflate the displayed star ratings for movies in a [popular article](https://fivethirtyeight.com/features/fandango-movies-ratings/). The aggregate rating store was accessible in the HTML and displayed a half star lower mode than the displayed rating.
 
 Displayed star ratings were found to round up to the nearest half or whole star in some instances (4.1 -> 4.5 or 5).
 
@@ -155,10 +155,10 @@ fdg_2015 |>
   summarise(Percentage = n() / nrow(fdg_2015) * 100)
 ```
 
-``` {r pre-star-percentages}
+``` {r post-star-percentages}
 fdg_2016 |> 
   group_by(fandango) |> 
-  summarise(Percentage = n() / nrow(fdg_2015) * 100)
+  summarise(Percentage = n() / nrow(fdg_2016) * 100)
 ```
 
 From these two frequency tables, we can indeed see that the number of very high ratings (4.5+) has gone down significantly from 2015 to 2016. Additionally it is evident that the number of 4.0 below star ratings have increased majorly. To quantify this we will use some summary statistics.
