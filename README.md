@@ -1,6 +1,6 @@
 # ToC
 
-## 1. Has Fandango adjusted inflated ratings since 2015 callout article?
+## 1. Did Fandango adjust inflated ratings since 2015 callout article? Yes
 ### [R_Stats-Fandango_Skewed_Ratings_pre_post](/R_Stats-Fandango_Skewed_Ratings_pre_post)
 
 Using statistical methods and visualizations, I show that Fandango did adjust the ratings inflations found in the popular 2015 article found [here](https://fivethirtyeight.com/features/fandango-movies-ratings/). Please view the HTML document.
@@ -17,13 +17,18 @@ The dataset was loading into SQlite for query writing with the given schema diag
 Make faceted and tiled visualizations to aid in discovering which forest fire factors correlate strongly with increase frequency of fire, or increased intensity (using area burned as a proxy). Use R-tidyverse packages to transform and load data from a CSV. 
 
 ---
-## Minor projects
+
+# Minor projects
+
+## Parallelized wikipedia text search in python using map-redice written from scratch (1000 articles test)
 ### [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
 
-Using a downloaded segment of wikipedia articles (1000 pages), 
+Write a map-reduce parallelization algorythem to search for strings in 1000 randomly scraped wikipedia pages. Return a dataframe of the file, line, character index, and context surrounding the match for each.
 
+## Venture Funding Analysis
 ### [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
 
+Classic crunchbase raising dataset, visualizing which classes of funraising, either funding type or product category obtains the most fundraising, and who contributes most to this type of funding.
 
 ---
 
@@ -38,7 +43,7 @@ Largely, the student is responsible for sanity checking the analysis.
 Example1: In the python-mapReduce project they provided the implementation metric: execution time for each method.
 
 Example2: In the R-visualizations-forest-fire-metrics project, DataQuest provided two months with highest fire frequency, and .png examples of one of the plots.
-  They do not provide any code or code base.
+They do not provide any starting code.
 
 DataQuest started Sept 2023
 
