@@ -18,12 +18,12 @@ Make faceted and tiled visualizations to aid in discovering which forest fire fa
 
 ## Minor projects
 
-### Parallelized wikipedia text search in python using map-redice written from scratch (1000 articles test)
+### * Parallelized wikipedia text search in python using map-redice written from scratch (1000 articles test)
 #### [python-mapReduce_Mutlithreaded_text_search_Wikipedia](/python-mapReduce_Mutlithreaded_text_search_Wikipedia)
 
 Write a map-reduce parallelization algorythem to search for strings in 1000 randomly scraped wikipedia pages. Return a dataframe of the file, line, character index, and context surrounding the match for each.
 
-### Venture Funding Analysis
+### * Venture Funding Analysis
 #### [python-pandas_sqlite_Chrunchbase_Fundraisers](/python-pandas_sqlite_Chrunchbase_Fundraisers)
 
 Classic crunchbase raising dataset, visualizing which classes of funraising, either funding type or product category obtains the most fundraising, and who contributes most to this type of funding.
